@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>Your Cart</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<nav class="navbar">
+<h2>TechStore</h2>
+<a href="index.html">Home</a>
+</nav>
+
+<h1 class="title">Shopping Cart</h1>
+
+<div id="cartContainer"></div>
+
+<div class="checkoutBox">
+<h2 id="total"></h2>
+<a href="checkout.html">
+<button class="checkoutBtn">Proceed to Checkout</button>
+</a>
+</div>
+
+<script>
+
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+const container = document.getElementById("cartContainer");
+
+let total = 0;
+
+function renderCart(){
+
+container.innerHTML = "";
+
+total = 0;
+
+cart.forEach((item,index)=>{
+
+total += item.price;
+
+container.innerHTML += `
+<div class="cartItem">
+
+<div class="cartInfo">
+<h3>${item.name}</h3>
+<p>₹${item.price}</p>
+</div>
+
+<button onclick="removeItem(${index})">Remove</button>
+
+</div>
+`;
+
+});
+
+document.getElementById("total").innerText = "Total: ₹" + total;
+
+}
+
+function removeItem(index){
+
+cart.splice(index,1);
+
+localStorage.setItem("cart",JSON.stringify(cart));
+
+renderCart();
+
+}
+
+renderCart();
+
+</script>
+
+</body>
+
+</html>
