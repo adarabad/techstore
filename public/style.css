@@ -179,3 +179,53 @@ cursor:pointer;
 .checkoutContainer button:hover{
 background:#27ae60;
 }
+
+.desc{
+font-size:14px;
+color:#555;
+margin:10px 0;
+}
+
+.specs{
+font-size:13px;
+text-align:left;
+margin-top:10px;
+}
+
+.specs li{
+margin:3px 0;
+color:#444;
+}
+
+.productPage{
+padding:40px;
+}
+
+.productLayout{
+display:flex;
+gap:40px;
+max-width:1000px;
+margin:auto;
+background:white;
+padding:30px;
+border-radius:10px;
+box-shadow:0 4px 15px rgba(0,0,0,0.1);
+}
+
+.productImage img{
+width:400px;
+border-radius:10px;
+}
+
+.productInfo{
+flex:1;
+}
+
+.productInfo h1{
+margin-bottom:10px;
+}
+
+.productInfo .price{
+color:#2ecc71;
+margin-bottom:15px;
+}

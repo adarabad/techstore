@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>Product Details</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<nav class="navbar">
+<h2>TechStore</h2>
+<a href="index.html">Home</a>
+</nav>
+
+<div id="productDetails" class="productPage"></div>
+
+<script>
+
+const params = new URLSearchParams(window.location.search);
+const productId = params.get("id");
+
+fetch("/products")
+.then(res => res.json())
+.then(products => {
+
+const product = products.find(p => p.id == productId);
+
+const container = document.getElementById("productDetails");
+
+container.innerHTML = `
+
+<div class="productLayout">
+
+<div class="productImage">
+<img src="${product.image}">
+</div>
+
+<div class="productInfo">
+
+<h1>${product.name}</h1>
+
+<h2 class="price">₹${product.price}</h2>
+
+<p>${product.description}</p>
+
+<h3>Specifications</h3>
+
+<ul class="specs">
+${product.specs.processor ? `<li><b>Processor:</b> ${product.specs.processor}</li>` : ""}
+${product.specs.ram ? `<li><b>RAM:</b> ${product.specs.ram}</li>` : ""}
+${product.specs.storage ? `<li><b>Storage:</b> ${product.specs.storage}</li>` : ""}
+${product.specs.connectivity ? `<li><b>Connectivity:</b> ${product.specs.connectivity}</li>` : ""}
+${product.specs.battery ? `<li><b>Battery:</b> ${product.specs.battery}</li>` : ""}
+${product.specs.dpi ? `<li><b>DPI:</b> ${product.specs.dpi}</li>` : ""}
+${product.specs.switches ? `<li><b>Switches:</b> ${product.specs.switches}</li>` : ""}
+${product.specs?.audio ? `<li><b>Audio:</b> ${product.specs.audio}</li>` : ""}
+${product.specs?.microphone ? `<li><b>Microphone:</b> ${product.specs.microphone}</li>` : ""}
+${product.specs?.power ? `<li><b>Power:</b> ${product.specs.power}</li>` : ""}
+${product.specs?.speed ? `<li><b>Speed:</b> ${product.specs.speed}</li>` : ""}
+${product.specs?.bands ? `<li><b>Bands:</b> ${product.specs.bands}</li>` : ""}
+${product.specs?.ports ? `<li><b>ports:</b> ${product.specs.ports}</li>` : ""}
+${product.specs?.display ? `<li><b>display:</b> ${product.specs.display}</li>` : ""}
+${product.specs?.refreshRate ? `<li><b>refreshRate:</b> ${product.specs.refreshRate}</li>` : ""}
+</ul>
+
+<button onclick='addToCart("${product.name}",${product.price})'>
+Add to Cart
+</button>
+
+</div>
+
+</div>
+
+`;
+
+});
+
+function addToCart(name,price){
+
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+cart.push({name,price});
+
+localStorage.setItem("cart",JSON.stringify(cart));
+
+alert("Added to cart");
+
+}
+
+</script>
+
+</body>
+
+</html>
