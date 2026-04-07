@@ -1,5 +1,6 @@
 const express = require("express");
 const cors = require("cors");
+const { type } = require("express/lib/response");
 
 const app = express();
 
@@ -202,6 +203,20 @@ speed:"3000 Mbps",
 bands:"Dual Band 2.4GHz / 5GHz",
 ports:"4 Gigabit LAN Ports"
 }
+},
+
+{
+id:15,
+name: "Printer",
+price:8500,
+image: "https://m.media-amazon.com/images/I/51Q+WJ6+JrL._SX679_.jpg",
+description: "Canon PIXMA MegaTank G1730",
+specs: {
+connectivity:"USB 2.0",
+type: "inkjet printer",
+speed: "Maximum Print Speed: 11/6 (mono/color) images per minute; Print cost Monochrome: Rs 0.13 ; Print cost color: Rs 0.25 ; Maximum Print Resolution: 4800 x 1200 dpi"
+}
+
 }
 ];
 
